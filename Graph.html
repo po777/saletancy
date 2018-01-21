@@ -1,0 +1,264 @@
+<head>
+    <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body{
+            /*background: linear-gradient(#e0e0e0,#bdbdbd);*/
+            background-color: #f5f5f5;
+        }
+        #background{
+            background-image: url(background.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 110%;
+            height: 1100px;
+            filter:opacity(0.7) blur(4px);
+            z-index: -1;
+            position: fixed;
+            top:-100px;
+            left:-10px;
+        }
+        @keyframes paragraph{
+            from{
+                /*transform: scaleX(0.8);*/
+                letter-spacing: 5px;
+            }
+            to{
+                /*transform: scaleX(1);*/
+                opacity: 1;
+            }
+        }
+        p{
+            z-index: 1;
+            text-align: center;
+            font-size: 40px;
+            margin-top: 150px;
+            font-family:baskerville old face;
+            font-weight: 100;
+            color: crimson;
+            opacity: 0;
+            animation-name: paragraph;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+        #mydiv1{
+            width: 60%;
+            height: 50%;
+            margin: auto;
+            display: block;
+            margin-top: 120px;
+            box-shadow: 0px 0px 10px 1px black;
+            border:5px solid white;
+            z-index: -1;
+            padding: 0;
+            transform: scaleX(0);
+            background-image: url(graphbackground.PNG);
+            background-size: cover;
+            background-repeat: no-repeat;
+            animation-name: graphappear;
+            animation-duration: 0.5s;
+            animation-fill-mode: forwards;
+        }
+        @keyframes graphappear{
+            to{
+                transform: scaleX(1);
+            }
+        }
+        table{
+            width:auto;
+            padding: 10px 10px 10px 10px;
+            position: absolute;
+            left: 460px;
+            border:2px solid white;
+            top:460px;
+            margin: auto;
+            display:block;
+            background-color:white;
+            /*background-color: transparent;*/
+            box-shadow: 0px 0px 10px 1px black;
+            border-radius: 0px;
+            text-align: center;
+            font-size: 20px;
+            font-family: century gothic;
+            animation-name: tableappear;
+            animation-duration: 0.5s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+            transform: scaleY(0);
+        }
+        @keyframes tableappear{
+            70%{
+                
+                transform: scaleY(1);
+            }
+            90%{
+                transform: scaleY(0.9);
+            }
+            to{
+                transform: scaleY(1);
+            }
+        }
+       input{
+            font-size: 20px;
+            text-align: center;
+            width: 100px;
+            margin: 10px 5px 10px -5px;
+           background-color: transparent;
+           border: none;
+           border-bottom: 1px solid black;
+            /*border-radius: 20px;
+            border:2px solid white;
+            background-color:#91a7ff;*/
+            color: crimson;
+           outline: none;
+           transition: 0.5s;
+        }
+        input:focus{
+            transform: scale(1.2,1.2);
+            color: crimson;
+            border-bottom-color: crimson;
+            
+        }
+        button{
+            font-size: 25px;
+            font-family:monospace;
+            
+            color: #f06292;
+            background-color: transparent;
+            border: 0px solid white;
+            border-radius: 20px;
+            border-top-left-radius: 0px;
+            border-top-right-radius: 0px;
+            border-top-width: 0px;
+            position: absolute;
+            opacity: 0;
+            outline: none;
+            display: block;
+            left: 590px;
+            top:588px;
+            transition: 0.2s;
+            box-shadow: 0px 8px 20px 0.1px black;
+            animation-name: buttonappear;
+            animation-duration: 0.5s;
+            animation-delay: 2s;
+            animation-fill-mode: forwards;
+            
+            
+        }
+        @keyframes buttonappear{
+            to{
+                opacity: 1;
+            }
+        }
+        td{
+            transition: 0.2s;
+            font-weight: bolder;
+        }
+        td:hover{
+            color: crimson;
+            
+        }
+        button:hover{
+            animation-fill-mode: none;
+            opacity: 1;
+            font-weight: bolder;
+            padding-left: 10px;
+            padding-right: 10px;
+            color:white;
+            background-color: crimson;
+            transform:scale(1.2,1.2);
+            cursor: pointer;
+            border-color: crimson;
+        }
+        #heading{
+            height: 0px;
+        }
+        h1{
+            margin: 0;
+            font-family: candara;
+            font-size: 250px;
+            color: white;
+            text-shadow:1px 1px 2px black;
+            position: fixed;
+            margin: 0;
+            top: -20px;
+            left: 100px;
+            transform: scaleY(1.5);
+        }
+        mytag{
+            font-size: 50px;
+            letter-spacing: 5px;
+            position: relative;
+            top:-110px;
+            right: 10px;
+            
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+  
+    <div id="background"></div>
+    <div id="heading">
+        <h1>B<mytag>asic Line Graph</mytag></h1>
+    </div>
+    <div id="mydiv1"><p id="para">Your graph will be shown here</p></div>
+    <div id="inputs">
+           <table>
+            <tr>
+                <td>X1: <input type="text" id="x1"></td>
+                <td>X2: <input type="text" id="x2"></td>
+                <td>X3: <input type="text" id="x3"></td>
+            </tr>
+            <tr>
+               <td>Y1: <input type="text" id="y1"></td>
+               <td>Y2: <input type="text" id="y2"></td>
+               <td>Y3: <input type="text" id="y3"></td>
+            </tr>
+           <!--<div>X3: <input type="text" id="x3"></div>
+           <div>Y1: <input type="text" id="y1"></div>
+           <div>Y2: <input type="text" id="y2"></div>
+           <div>Y3: <input type="text" id="y3"></div>-->
+            </table>
+            
+    </div>
+    <div><button onclick="getdata()">Create Graph</button></div>
+ <script>
+        var x1,x2,x3,y1,y2,y3;
+        function getdata(){
+            document.getElementById('para').innerHTML='';
+            x1=parseInt(document.getElementById('x1').value);
+            x2=parseInt(document.getElementById('x2').value);
+            x3=parseInt(document.getElementById('x3').value);
+            y1=parseInt(document.getElementById('y1').value);
+            y2=parseInt(document.getElementById('y2').value);
+            y3=parseInt(document.getElementById('y3').value);
+            
+        
+        var mytrace={
+            x:[x1,x2,x3],
+            y:[y1,y2,y3],
+            mode:'lines+markers',
+            name:'askdljas',
+            line: {
+                color: 'rgb(219, 64, 82)',
+                width: 3
+            }
+        };
+        var layout = {
+            title:'Basic Line Graph',
+            xaxis: {
+                title: 'x-axis'
+            },
+            yaxis: {
+                title: 'y-axis'
+            }
+        };
+       var mydata=[mytrace]; 
+     Plotly.newPlot('mydiv1',mydata,layout);
+        }
+    </script>  
+ 
+
+</body>
